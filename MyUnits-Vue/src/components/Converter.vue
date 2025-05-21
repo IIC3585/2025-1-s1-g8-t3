@@ -1,32 +1,33 @@
 <script>
+import SpecificConverter from './SpecificConverter.vue';
 export default {
+    components: {
+        SpecificConverter
+    },
   data() {
     return {
-      _selectedConversion: 'temperatura',
-      values: {
-        a: 0,
-        b: 32,
-      },
+      // Getter y Setter de tipo de conversion para actualizar también los valores de los inputs
+      selectedConversion: 'temperatura',
       conversionTypes: {
         temperatura: {
-          a_value: 0,
-          b_value: 32,
+          initialA: 0,
+          initialB: 32,
           labelA: 'Celsius',
           labelB: 'Fahrenheit',
           convertAtoB: (c) => (c * 9) / 5 + 32,
           convertBtoA: (f) => ((f - 32) * 5) / 9,
         },
         longitud: {
-          a_value: 0,
-          b_value: 0,
+          initialA: 0,
+          initialB: 0,
           labelA: 'Metros',
           labelB: 'Pies',
           convertAtoB: (m) => m * 3.28084,
           convertBtoA: (ft) => ft / 3.28084,
         },
         peso: {
-          a_value: 0,
-          b_value: 0,
+          initialA: 0,
+          initialB: 0,
           labelA: 'Kilogramos',
           labelB: 'Libras',
           convertAtoB: (kg) => kg * 2.20462,
@@ -38,28 +39,8 @@ export default {
   computed: {
     current() {
       return this.conversionTypes[this.selectedConversion];
-    },
-    selectedConversion: {
-      get() {
-        return this._selectedConversion;
-      },
-      set(value) {
-        this._selectedConversion = value;
-        this.values.a = this.current.a_value;
-        this.values.b = this.current.b_value;
-      }
     }
-  },
-  methods: {
-    setA(event) {
-      this.values.a = parseFloat(event.target.value);
-      this.values.b = this.current.convertAtoB(this.values.a);
-    },
-    setB(event) {
-      this.values.b = parseFloat(event.target.value);
-      this.values.a = this.current.convertBtoA(this.values.b);
-    },
-  },
+  }
 };
 </script>
 
@@ -71,17 +52,15 @@ export default {
       </option>
     </select>
 
-    <div>
-      <input type="number" :value="values.a" @input="setA" />
-      {{ current.labelA }}
-    </div>
-
-    <p>=</p>
-
-    <div>
-      <input type="number" :value="values.b" @input="setB" />
-      {{ current.labelB }}
-    </div>
+    <SpecificConverter
+      :key="selectedConversion"
+      :initialA="current.initialA"
+      :initialB="current.initialB"
+      :labelA="current.labelA"
+      :labelB="current.labelB"
+      :convertAtoB="current.convertAtoB"
+      :convertBtoA="current.convertBtoA"
+    />
   </div>
 </template>
 
