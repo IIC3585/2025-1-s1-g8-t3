@@ -32,9 +32,32 @@ export default {
           labelB: 'Libras',
           convertAtoB: (kg) => kg * 2.20462,
           convertBtoA: (lb) => lb / 2.20462,
-        }
+        },
+        datos: {
+          initalA: 0,
+          initalB: 0,
+          labelA: 'Megabytes',
+          labelB: 'Gigabytes',
+          convertAtoB: (Mb) => Mb / 1024,
+          convertBtoA: (Gb) => GB * 1024,
+        },
+        tiempo: {
+          initialA: 0,
+          initialB: 0,
+          labelA: 'Horas',
+          labelB: 'Minutos',
+          convertAtoB: (hr) => hr * 60,
+          convertBtoA: (min) => min / 60,
       },
-    };
+      velocidad: {
+        initialA: 0,
+        initialB: 0,
+        labelA: 'Kilometro/Hora',
+        labelB: 'Metros/Segundo',
+        convertAtoB: (kmh) => kmh / 3.6,
+        convertBtoA: (ms) => ms * 3.6,
+      }
+    }
   },
   computed: {
     current() {
