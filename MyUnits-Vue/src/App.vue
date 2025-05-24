@@ -9,7 +9,13 @@ import Converter from './components/Converter.vue';
     <div class="wrapper">
       <h1>MyUnits</h1>
       <p>
-        A simple unit converter for all your needs.
+        Un convertidor de unidades para todas tus necesidades.
+      </p>
+      <p>
+        Solo selecciona tu magnitud y luego las unidades que deseas convertir.
+        <br />
+        El convertidor se encargará del resto.
+        <br />
       </p>
     </div>
   </header>
