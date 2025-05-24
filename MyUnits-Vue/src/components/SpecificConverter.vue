@@ -30,7 +30,7 @@ export default {
     data() {
         return {
             a: this.initialA,
-            b: this.initialB || this.initialA
+            b: this.initialB
         }
     },
     methods: {
