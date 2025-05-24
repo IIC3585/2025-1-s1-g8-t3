@@ -29,25 +29,9 @@ body {
   margin: 0 auto;
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: center;
   gap: 1rem;
 }
-
-
-.content-wrapper header {
-  width: 100%;
-  line-height: 1.5;
-  text-align: justify;
-  text-justify: inter-word;
-  text-align-last: left;
-  color: var(--color-text);
-}
-.content-wrapper .title {
-  font-size: 2rem;
-  margin: 0 0 0.5rem;
-  text-align: left;
-}
-
 
 .converter {
   display: grid;
