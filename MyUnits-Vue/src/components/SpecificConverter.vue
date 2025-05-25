@@ -79,6 +79,9 @@ export default {
                 if (label.includes("/")) {
                     return label.replace("/", "s/"); 
                 }
+                else if (label.includes("Caballo")) {
+                    return label.replace("Caballo", "Caballos")
+                }
                 else {
                     return label + "s";
                 }
