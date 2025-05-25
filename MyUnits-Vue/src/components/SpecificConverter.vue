@@ -33,6 +33,14 @@ export default {
             b: this.initialB
         }
     },
+    computed: {
+        displayLabelA() {
+            return this.getPluralizedLabel(this.labelA, this.a);
+        },
+        displayLabelB() {
+            return this.getPluralizedLabel(this.labelB, this.b);
+        }
+    },
     methods: {
         onInputA(event) {
             this.a = event.target.value;
@@ -41,6 +49,19 @@ export default {
         onInputB(event) {
             this.b = event.target.value;
             this.a = this.convertBtoA(this.b);
+        },
+        getPluralizedLabel(label, value) {
+            const numValue = parseFloat(value);
+            if (numValue === 1) {
+                return label; 
+            } else {
+                if (label.includes("/")) {
+                    return label.replace("/", "s/"); 
+                }
+                else {
+                    return label
+                }
+            }
         }
     }
 }
@@ -50,14 +71,14 @@ export default {
     <div>
         <div>
       <input type="number" :value="a" @input="onInputA" />
-      {{ labelA }}
+      {{ displayLabelA }}
     </div>
 
     <p>=</p>
 
     <div>
       <input type="number" :value="b" @input="onInputB" />
-      {{ labelB }}
+      {{ displayLabelB }}
     </div>
   </div>
 </template>

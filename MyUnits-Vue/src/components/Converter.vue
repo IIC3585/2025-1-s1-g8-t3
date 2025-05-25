@@ -103,25 +103,25 @@ export default {
           base: 'bytes',
           units: {
             bytes: {
-              label: 'Bytes',
+              label: 'Byte',
               symbol: 'B',
               toBase: (x) => x,
               fromBase: (x) => x
             },
             kilobytes: {
-              label: 'Kilobytes',
+              label: 'Kilobyte',
               symbol: 'KB',
               toBase: (x) => x * 1024,
               fromBase: (x) => x / 1024
             },
             megabytes: {
-              label: 'Megabytes',
+              label: 'Megabyte',
               symbol: 'MB',
               toBase: (x) => x * (1024 ** 2),
               fromBase: (x) => x / (1024 ** 2)
             },
             gigabytes: {
-              label: 'Gigabytes',
+              label: 'Gigabyte',
               symbol: 'GB',
               toBase: (x) => x * (1024) ** 3,
               fromBase: (x) => x / (1024 ** 3)
@@ -160,20 +160,20 @@ export default {
         },
         velocidad: {
           label: 'Velocidad',
-          base: 'metros/segundo',
+          base: 'metro/segundo',
           units: {
             'metros/segundo': {
-              label: 'Metros/Segundo',
+              label: 'Metro/Segundo',
               toBase: (x) => x,
               fromBase: (x) => x
             },
             'kilometros/hora': {
-              label: 'Kilómetros/Hora',
+              label: 'Kilómetro/Hora',
               toBase: (x) => x / 3.6,
               fromBase: (x) => x * 3.6
             },
             'millas/hora': {
-              label: 'Millas/Hora',
+              label: 'Milla/Hora',
               toBase: (x) => x / 2.23694,
               fromBase: (x) => x * 2.23694
             },
