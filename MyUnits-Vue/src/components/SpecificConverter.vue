@@ -29,29 +29,50 @@ export default {
     },
     data() {
         return {
-            a: this.initialA,
-            b: this.initialB
+            valueA: Number(this.initialA),
+            valueB: Number(this.initialB),
+            labelADisplay: '',
+            labelBDisplay: ''
         }
     },
-    computed: {
-        displayLabelA() {
-            return this.getPluralizedLabel(this.labelA, this.a);
+    watch: {
+        valueA: {
+            immediate: true,
+            handler(newVal) {
+                this.labelADisplay = this.getPluralizedLabel(this.labelA, newVal);
+                // Only update B if A changed by user input, not by the conversion from B
+                if (!this.updatingFromB) {
+                    this.updatingFromA = true;
+                    this.valueB = this.convertAtoB(Number(newVal));
+                    this.$nextTick(() => {
+                        this.updatingFromA = false;
+                    });
+                }
+            }
         },
-        displayLabelB() {
-            return this.getPluralizedLabel(this.labelB, this.b);
+        valueB: {
+            immediate: true,
+            handler(newVal) {
+                this.labelBDisplay = this.getPluralizedLabel(this.labelB, newVal);
+                // Only update A if B changed by user input, not by the conversion from A
+                if (!this.updatingFromA) {
+                    this.updatingFromB = true;
+                    this.valueA = this.convertBtoA(Number(newVal));
+                    this.$nextTick(() => {
+                        this.updatingFromB = false;
+                    });
+                }
+            }
         }
+    },
+    created() {
+        // Initialize flags to prevent circular updates
+        this.updatingFromA = false;
+        this.updatingFromB = false;
     },
     methods: {
-        onInputA(event) {
-            this.a = event.target.value;
-            this.b = this.convertAtoB(this.a);
-        },
-        onInputB(event) {
-            this.b = event.target.value;
-            this.a = this.convertBtoA(this.b);
-        },
         getPluralizedLabel(label, value) {
-            const numValue = parseFloat(value);
+            const numValue = Number(value);
             if (numValue === 1) {
                 return label; 
             } else {
@@ -59,7 +80,7 @@ export default {
                     return label.replace("/", "s/"); 
                 }
                 else {
-                    return label
+                    return label + "s";
                 }
             }
         }
@@ -70,15 +91,15 @@ export default {
 <template>
     <div>
         <div>
-      <input type="number" :value="a" @input="onInputA" />
-      {{ displayLabelA }}
+      <input type="number" v-model.number="valueA" />
+      {{ labelADisplay }}
     </div>
 
     <p>=</p>
 
     <div>
-      <input type="number" :value="b" @input="onInputB" />
-      {{ displayLabelB }}
+      <input type="number" v-model.number="valueB" />
+      {{ labelBDisplay }}
     </div>
   </div>
 </template>
