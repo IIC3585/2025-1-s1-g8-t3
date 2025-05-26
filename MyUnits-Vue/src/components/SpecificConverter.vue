@@ -92,17 +92,51 @@ export default {
 </script>
 
 <template>
-    <div>
-        <div>
-      <input type="number" v-model.number="valueA" />
-      {{ labelADisplay }}
+    <div class="specific-converter">
+      <div class="field">
+        <input type="number" v-model.number="valueA" />
+        <span>{{ labelADisplay }}</span>
+      </div>
+  
+      <span class="equal-sign">=</span>
+  
+      <div class="field">
+        <input type="number" v-model.number="valueB" />
+        <span>{{ labelBDisplay }}</span>
+      </div>
     </div>
+  </template>
+  
+  <style scoped>
+  .specific-converter {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+  
+  .field {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
 
-    <p>=</p>
-
-    <div>
-      <input type="number" v-model.number="valueB" />
-      {{ labelBDisplay }}
-    </div>
-  </div>
-</template>
+    .field span {
+      align-self: flex-start;
+    }
+  
+  input[type="number"] {
+    width: 100%;
+    padding: 0.7rem 1rem;
+    font-size: 1rem;
+    border: 1px solid var(--color-border);
+    border-radius: 8px;
+    background: var(--color-background-soft);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+    transition: border-color 0.2s, box-shadow 0.2s;
+  }
+  
+  .equal-sign {
+    font-size: 1.5rem;
+    align-self: flex-start; 
+  }
+  </style>

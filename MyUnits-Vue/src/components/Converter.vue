@@ -164,16 +164,19 @@ export default {
           units: {
             'metros/segundo': {
               label: 'Metro/Segundo',
+              symbol: 'm/s',
               toBase: (x) => x,
               fromBase: (x) => x
             },
             'kilometros/hora': {
               label: 'Kilómetro/Hora',
+              symbol: 'km/h',
               toBase: (x) => x / 3.6,
               fromBase: (x) => x * 3.6
             },
             'millas/hora': {
               label: 'Milla/Hora',
+              symbol: 'mi/h',
               toBase: (x) => x / 2.23694,
               fromBase: (x) => x * 2.23694
             },

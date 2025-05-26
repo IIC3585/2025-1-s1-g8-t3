@@ -97,10 +97,6 @@ body {
   margin-top: 1rem;
 }
 
-.converter .specific-converter span {
-  display: none;
-}
-
 .converter .specific-converter input,
 .converter .specific-converter label {
   width: 100%;

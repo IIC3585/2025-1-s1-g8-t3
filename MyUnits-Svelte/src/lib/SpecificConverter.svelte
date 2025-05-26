@@ -94,6 +94,7 @@
   p {
     text-align: center;
     font-weight: bold;
+    font-size: 1.2rem;
     margin: 0; 
   }
 
